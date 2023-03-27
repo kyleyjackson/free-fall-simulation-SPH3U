@@ -9,6 +9,29 @@
     <title>Free-fall simulation</title>
 </head>
 <body>
-    
+    <h1>Free-fall Simulation</h1>
+    <div class="container">
+        <div id="animation-container">
+            <div id="animate"></div>
+        </div>
+        
+        <div id="values-container">
+            <h3>Velocity: <span id="velo">0</span>m/s</h3>
+            <h3>Acceleration: <span id="accel">0</span>m/s^2</h3>
+            <h3>Vertical Displacenent: <span id="displace">0</span>m</h3>
+        </div>
+    </div>
+
+    <p><button id="go-button" onclick="myMove();">Go!</button></p> 
+    <br>
+
+    <div class="container">
+        <div id="options-container">
+            <h2>Options</h2>
+            <h3>Gravity <span><input type="checkbox" checked></span></h3>
+        </div>
+    </div>
 </body>
 </html>
+
+<script src="/scripts/main.js"></script>
