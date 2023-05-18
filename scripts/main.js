@@ -36,26 +36,29 @@ function myMove() {
 }
 
 //!logic functions
-function determineNull(a, vi, vf, t) {
+function determineNull(a, d, vi, vf, t) {
   if(a === null) {
     a = null1;
-    determineNull(a, vi, vf, t);
+    determineNull(a, d, vi, vf, t);
+  } else if(d === null) {
+    d = null1;
+    determineNull(a, d, vi, vf, t);
   } else if(vi === null) {
     vi = null1;
-    determineNull(a,  vi, vf, t);
+    determineNull(a, d, vi, vf, t);
   } else if(vf === null) {
     vf = null1;
-    determineNull(a, vi, vf, t);
+    determineNull(a, d, vi, vf, t);
   } else if(t === null) {
     t = null1;
-    determineNull(a,  vi, vf, t);
+    determineNull(a, d, vi, vf, t);
   } else {
-    return a + '-' + vi + '-' + vf + '-' + t;
+
   }
 }
 
-function determineEquation(a, vi, vf, t) {
-
+function determineEquation(a, d, vi, vf, t) {
+  
 }
 
 //!kinematic equation functions
