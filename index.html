@@ -2,36 +2,23 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="/styles/style.css">
-    <link rel="icon" href="/images/favicon.ico">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Free-fall simulation</title>
+    <link rel="icon" href="/images/favicon.ico">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="/styles/style1.css">
+    <title>Free-Fall Simulation</title>
 </head>
 <body>
-    <h1>Free-fall Simulation</h1>
-    <div class="container">
-        <div id="animation-container">
-            <div id="animate"></div>
-        </div>
-        
-        <div id="values-container">
-            <h3>Velocity: <span id="velo">0</span>m/s</h3>
-            <h3>Acceleration: <span id="accel">0</span>m/s^2</h3>
-            <h3>Vertical Displacenent: <span id="displace">0</span>m</h3>
+    <div class="columns">
+        <div class="column">
+            <h1 class="title has-text-centered">Free-Fall Simulation</h1>
         </div>
     </div>
-
-    <p><button id="go-button" onclick="myMove();">Go!</button></p> 
-    <br>
-
-    <div class="container">
-        <div id="options-container">
-            <h2>Options</h2>
-            <h3>Gravity <span><input id="grav-check" type="checkbox" checked></span></h3>
-        </div>
+    <div class="columns">
+        <div class="column is-5" id="animation-container"></div>
+        <div class="column is-5" id="options-container"></div>
     </div>
 </body>
 </html>
-
-<script src="/scripts/main.js"></script>
+<script></script>

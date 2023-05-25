@@ -10,6 +10,7 @@ const null1 = 'null' + 1;
 //!main functions
 function myMove() {
   let id;  
+  let initPos = 100;
   let pos = 0; //position of the bottom of the object (350 max since animation-container's height is 400px)
   let interval = 5; //essentially sets the 'velocity' of the object (framerate)
 
@@ -28,38 +29,16 @@ function myMove() {
       pos++; 
       elem.style.top = pos + "px"; 
       console.log(pos);
-      displacementDisplay.textContent = (pos / 3.5).toFixed(2);
-      velocityDisplay.textContent = 9.81;
+
+      displacementDisplay.textContent = Math.round((initPos - (pos / 3.5)) * 1e2) / 1e2; 
+      velocityDisplay.textContent = 0;
       accelerationDisplay.textContect = 9.81;
     }
   }
 }
 
 //!logic functions
-function determineNull(a, d, vi, vf, t) {
-  if(a === null) {
-    a = null1;
-    determineNull(a, d, vi, vf, t);
-  } else if(d === null) {
-    d = null1;
-    determineNull(a, d, vi, vf, t);
-  } else if(vi === null) {
-    vi = null1;
-    determineNull(a, d, vi, vf, t);
-  } else if(vf === null) {
-    vf = null1;
-    determineNull(a, d, vi, vf, t);
-  } else if(t === null) {
-    t = null1;
-    determineNull(a, d, vi, vf, t);
-  } else {
 
-  }
-}
-
-function determineEquation(a, d, vi, vf, t) {
-  
-}
 
 //!kinematic equation functions
 
