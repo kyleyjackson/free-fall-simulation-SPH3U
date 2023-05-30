@@ -20,7 +20,7 @@
             <button class="button mb-5 is-rounded is-info is-light" id="go-btn" onclick="myMove();">Drop!</button> 
             <span><button class="button is-rounded is-danger is-light" id="reset-btn" onclick="cancel();">Reset</button></span>
             <br>
-            <img src="/images/standing2.png" id="sc-standing">
+            <img src="/images/standing2.png" id="sc-standing" class="ml-6">
         </div>
         <div class="column is-4" id="options-stats-container">
             <div class="card">
@@ -51,13 +51,14 @@
                 <div class="card-content">
                     <div class="columns">
                         <div class="column is-6">
-                            <p id="g-check" class="is-size-6 mb-2">Gravity</p>
-                            <p id="w-val" class="is-size-6 mb-2">Weight</p>
-                            <p id="d-val" class="is-size-6">Max Displacement</p>
+                            <p id="g-check" class="is-size-6 mb-2">Gravity <span><input type="checkbox" class="checkbox" id="g-check" checked></span></p>
+                            <p id="w-val" class="is-size-6 mb-2">Weight (kg) <span><input type="number" class="input is-link" id="w-input" value="10"></span></p>
+                            <p id="md-val" class="is-size-6">Max Displacement (m) <span><input type="number" class="input is-link" id="md-input" value="100"></span></p>
                         </div>
                         <div class="column is-6">
-                            <p id="a-check" class="is-size-6 mb-2">Air Resistance</p>
-                            <p id="a-val" class="is-size-6 mb-2">Air Resistance Value</p>
+                            <p id="ar-check" class="is-size-6 mb-2">Air Resistance  <span><input type="checkbox" class="checkbox" id="a-check"></span></p>
+                            <p id="ar-val" class="is-size-6 mb-2">Air Resistance Value (N) <span><input type="number" class="input is-link" id="ar-input"></span></p>
+                            <p id="csa-val" class="is-size-6">Cross-Sectional Area Value (m<sup>2</sup>) <span><input type="number" class="input is-link" id="csa-input"></span></p>
                         </div>
                     </div>
                 </div>  
