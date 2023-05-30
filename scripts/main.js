@@ -9,6 +9,7 @@ const acceleration = document.getElementById('d-st');
 //buttons
 const goBtn = document.getElementById('go-btn');
 const resetBtn = document.getElementById('reset-btn');
+const pauseBtn = document.getElementById('pause-btn');
 
 //input fields
 const gCheck = document.getElementById('g-check');
@@ -19,6 +20,8 @@ const arVal = document.getElementById('ar-val');
 const elem = document.getElementById("sc-standing");
 
 
+resetBtn.classList.add('is-hovered');
+pauseBtn.classList.add('is-hovered');
 
 //* numerical values
 const imgOffset = elem.offsetTop; //find y-pos of image in order to calculate displacement
@@ -27,19 +30,34 @@ console.log(maxY);
 
 //* booleans
 var cancelled = false;
-resetBtn.disabled = true;
-resetBtn.classList.add('is-hovered');
+var paused = false;
 
 
 function myMove() {   
     var pos = imgOffset; //default position  of image (subject)
     var id = null;
+    var di = displacement.textContent;
 
     clearInterval(id);
     id = setInterval(frame, 2);
 
     function frame() {
-        if (cancelled === true) {
+        if (paused) {
+            //image modifiers
+            clearInterval(id);
+
+            //buttons
+            goBtn.disabled = true;
+            goBtn.classList.add('is-hovered');
+            resetBtn.disabled = false;
+            resetBtn.classList.remove('is-hovered');
+            pauseBtn.disabled = true;
+            pauseBtn.classList.add('is-hovered');
+
+            //misc
+            paused = true;
+            cancelled = false;
+        } else if (cancelled) {
             //image modifiers
             clearInterval(id);
             elem.style.top = imgOffset + 'px';
@@ -49,6 +67,8 @@ function myMove() {
             goBtn.classList.remove('is-hovered');
             resetBtn.disabled = true;
             resetBtn.classList.add('is-hovered');
+            pauseBtn.disabled = true;
+            pauseBtn.classList.add('is-hovered');
             
             //misc
             cancelled = false;
@@ -68,7 +88,7 @@ function myMove() {
             elem.style.top = pos + 'px'; 
 
             //value modifiers
-            displacement.textContent = 
+            displacement.textContent = parseInt(di) - (parseInt(di) / 690).toFixed(2);
             velocity.textContent = 
 
 
@@ -77,6 +97,8 @@ function myMove() {
             goBtn.classList.add('is-hovered');
             resetBtn.disabled = false;
             resetBtn.classList.remove('is-hovered');
+            pauseBtn.disabled = false;
+            pauseBtn.classList.remove('is-hovered');
 
             //console logs
             console.log(pos - imgOffset);
@@ -90,19 +112,34 @@ function cancel() {
     } else {
         cancelled = true;
     }
+
+    if (paused) {
+        paused = false;
+        elem.style.top = imgOffset + 'px';
+    }
+}
+
+function isPaused() {
+    if (paused) {
+        paused = false;
+    } else {
+        paused = true;
+    }
 }
 
 //track mouse position for testing and improving functionality
-document.onmousemove = function(e) {
+/*document.onmousemove = function(e) {
     var x = e.pageX;
     var y = e.pageY;
     var txt = e.target.title = "X is " + x + " and Y is " + y;
 
     //!console.log(txt);
-}
+} */
 
 //kinematic equations
 function vf(vi, a, t) {
     return vi + (a * t);
 }
+
+function d()
 
