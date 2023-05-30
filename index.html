@@ -17,7 +17,8 @@
     </div>
     <div class="columns is-centered">
         <div class="column is-2 is-vcentered" id="animation-container">
-            <button class="button mb-5" onclick="myMove();">Drop!</button> 
+            <button class="button mb-5 is-rounded is-info is-light" id="go-btn" onclick="myMove();">Drop!</button> 
+            <span><button class="button is-rounded is-danger is-light" id="reset-btn" onclick="cancel();">Reset</button></span>
             <br>
             <img src="/images/standing2.png" id="sc-standing">
         </div>
@@ -48,11 +49,17 @@
                     <p class="card-header-title has-text-centered is-size-4">Options</p>
                 </div>
                 <div class="card-content">
-                    <p id="g-check" class="is-size-6 mb-2">Gravity</p>
-                    <p id="a-check" class="is-size-6 mb-2">Air Resistance</p>
-                    <p id="a-val" class="is-size-6 mb-2">Air Resistance Value</p>
-                    <p id="w-val" class="is-size-6 mb-2">Weight</p>
-                    <p id="d-val" class="is-size-6">Maximum Vertical Displacement</p>
+                    <div class="columns">
+                        <div class="column is-6">
+                            <p id="g-check" class="is-size-6 mb-2">Gravity</p>
+                            <p id="w-val" class="is-size-6 mb-2">Weight</p>
+                            <p id="d-val" class="is-size-6">Max Displacement</p>
+                        </div>
+                        <div class="column is-6">
+                            <p id="a-check" class="is-size-6 mb-2">Air Resistance</p>
+                            <p id="a-val" class="is-size-6 mb-2">Air Resistance Value</p>
+                        </div>
+                    </div>
                 </div>  
 
                 <!-- position-time, velocity-time, and acceleration-time graphs using chart.js -->
