@@ -1,44 +1,44 @@
-//HTML elements
-const goButton = document.getElementById('go-button');
-const velocityDisplay = document.getElementById('velo');
-const accelerationDisplay = document.getElementById('accel');
-const displacementDisplay = document.getElementById('displace');
-const elem = document.getElementById('animate'); 
-const gravCheck = document.getElementById('grav-check');
-const null1 = 'null' + 1;
+//* HTML elements
+const elem = document.getElementById("sc-standing");
+const displacement = document.getElementById('d-st');
+const time = document.getElementById('t-st');
+const velocity = document.getElementById('v-st');
+const acceleration = document.getElementById('d-st');
 
-//!main functions
-function myMove() {
-  let id;  
-  let initPos = 100;
-  let pos = 0; //position of the bottom of the object (350 max since animation-container's height is 400px)
-  let interval = 5; //essentially sets the 'velocity' of the object (framerate)
+const dVal = document.getElementById
 
-  clearInterval(id);
-  id = setInterval(frame, interval); 
+//* numerical values
+const imgOffset = elem.offsetTop; //find y-pos of image in order to calculate displacement
+var displaceY = 0;
+var maxY = 0;
 
-  goButton.classList.add('not-visible');
-  console.log(gravCheck.checked); //checking if the gravity checkbox is checked
 
-  function frame() {
-    if (pos == 350) {  //when the object has hit the bottom
-      clearInterval(id);
-      console.log('done');
-      goButton.classList.remove('not-visible');
-    } else {
-      pos++; 
-      elem.style.top = pos + "px"; 
-      console.log(pos);
 
-      displacementDisplay.textContent = Math.round((initPos - (pos / 3.5)) * 1e2) / 1e2; 
-      velocityDisplay.textContent = 0;
-      accelerationDisplay.textContect = 9.81;
+function myMove() {   
+    var pos = imgOffset; //defaukt position  of image (subject)
+    var id = null;
+
+    maxY = imgOffset + parseInt();
+
+    clearInterval(id);
+    id = setInterval(frame, 10);
+
+    function frame() {
+        if (pos == maxY) {
+            clearInterval(id);
+        } else {
+            pos++; 
+            elem.style.top = pos + 'px'; 
+            console.log(pos);
+        }
     }
-  }
 }
 
-//!logic functions
+//track mouse position for testing and improving functionality
+document.onmousemove = function(e) {
+    var x = e.pageX;
+    var y = e.pageY;
+    var txt = e.target.title = "X is " + x + " and Y is " + y;
 
-
-//!kinematic equation functions
-
+    //!console.log(txt);
+}

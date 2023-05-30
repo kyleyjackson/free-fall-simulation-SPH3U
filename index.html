@@ -6,19 +6,62 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="/images/favicon.ico">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-    <link rel="stylesheet" href="/styles/style1.css">
+    <link rel="stylesheet" href="/styles/style.css">
     <title>Free-Fall Simulation</title>
 </head>
 <body>
     <div class="columns">
         <div class="column">
-            <h1 class="title has-text-centered">Free-Fall Simulation</h1>
+            <h1 class="title has-text-centered is-size-1 my-4">Free-Fall Simulation</h1>
         </div>
     </div>
-    <div class="columns">
-        <div class="column is-5" id="animation-container"></div>
-        <div class="column is-5" id="options-container"></div>
+    <div class="columns is-centered">
+        <div class="column is-2 is-vcentered" id="animation-container">
+            <button class="button mb-5" onclick="myMove();">Drop!</button> 
+            <br>
+            <img src="/images/standing2.png" id="sc-standing">
+        </div>
+        <div class="column is-5" id="options-stats-container">
+            <div class="card">
+                <!-- values regarding falling objects -->
+                <div class="card-header">
+                    <p class="card-header-title has-text-centered is-size-4">Values</p>
+                </div>
+                <div class="card-content">
+                    <p class="title is-size-5">Downwards Vectors</p>
+                    <p class="is-size-6 mb-4" id="displacement">Vertical Position: <span id="d-st">100</span>m</p>
+                    <p class="is-size-6 mb-4" id="velocity">Velocity: <span id="v-st">0</span>m/s</p>
+                    <p class="is-size-6" id="acceleration">Acceleration: <span id="a-st">0</span>m/s<sup>2</sup><!-- <sup> tag used for superscripts --></p>
+
+                    <br>
+
+                    <p class="title is-size-5">Scalars</p>
+                    <p class="is-size-6 mb-4" id="time">Time: <span id="t-st">0</span>s</p>
+                    <p class="is-size-6 mb-4" id="weight">Current Weight: <span id="w-st">0</span>kg</p>
+                </div>
+
+                <!-- options including air resistance, gravity, forces, and more -->
+                <div class="card-header">
+                    <p class="card-header-title has-text-centered is-size-4">Options</p>
+                </div>
+                <div class="card-content">
+                    <p id="g-check" class="is-size-6 mb-2">Gravity</p>
+                    <p id="a-check" class="is-size-6 mb-2">Air Resistance</p>
+                    <p id="a-val" class="is-size-6 mb-2">Air Resistance Value</p>
+                    <p id="w-val" class="is-size-6 mb-2">Weight</p>
+                    <p id="d-val" class="is-size-6">Maximum Vertical Displacement</p>
+                </div>  
+
+                <!-- position-time, velocity-time, and acceleration-time graphs using chart.js -->
+                <div class="card-header">
+                    <p class="card-header-title has-text-centered is-size-4">Graphs</p>
+                </div>
+                <div class="card-content">
+                    
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 </html>
-<script></script>
+<script src="/scripts/main.js"></script>
