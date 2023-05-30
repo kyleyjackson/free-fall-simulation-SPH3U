@@ -21,23 +21,26 @@
             <br>
             <img src="/images/standing2.png" id="sc-standing">
         </div>
-        <div class="column is-5" id="options-stats-container">
+        <div class="column is-4" id="options-stats-container">
             <div class="card">
-                <!-- values regarding falling objects -->
+                <!-- values regarding falling object -->
                 <div class="card-header">
                     <p class="card-header-title has-text-centered is-size-4">Values</p>
                 </div>
                 <div class="card-content">
-                    <p class="title is-size-5">Downwards Vectors</p>
-                    <p class="is-size-6 mb-4" id="displacement">Vertical Position: <span id="d-st">100</span>m</p>
-                    <p class="is-size-6 mb-4" id="velocity">Velocity: <span id="v-st">0</span>m/s</p>
-                    <p class="is-size-6" id="acceleration">Acceleration: <span id="a-st">0</span>m/s<sup>2</sup><!-- <sup> tag used for superscripts --></p>
-
-                    <br>
-
-                    <p class="title is-size-5">Scalars</p>
-                    <p class="is-size-6 mb-4" id="time">Time: <span id="t-st">0</span>s</p>
-                    <p class="is-size-6 mb-4" id="weight">Current Weight: <span id="w-st">0</span>kg</p>
+                    <div class="columns">
+                        <div class="column is-6">
+                            <p class="title is-size-5">Downwards Vectors</p>
+                            <p class="is-size-6 mb-4" id="displacement">Vertical Position: <span id="d-st">100</span>m</p>
+                            <p class="is-size-6 mb-4" id="velocity">Velocity: <span id="v-st">0</span>m/s</p>
+                            <p class="is-size-6" id="acceleration">Acceleration: <span id="a-st">0</span>m/s<sup>2</sup><!-- <sup> tag used for superscripts --></p>
+                        </div>
+                        <div class="column is-6">
+                            <p class="title is-size-5">Scalars</p>
+                            <p class="is-size-6 mb-4" id="time">Time: <span id="t-st">0</span>s</p>
+                            <p class="is-size-6 mb-4" id="weight">Current Weight: <span id="w-st">0</span>kg</p>
+                        </div>
+                    </div>   
                 </div>
 
                 <!-- options including air resistance, gravity, forces, and more -->
@@ -65,3 +68,5 @@
 </body>
 </html>
 <script src="/scripts/main.js"></script>
+                
+  
