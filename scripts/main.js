@@ -14,7 +14,10 @@ const pauseBtn = document.getElementById('pause-btn');
 //input fields
 const gCheck = document.getElementById('g-check');
 const arCheck = document.getElementById('ar-check');
-const arVal = document.getElementById('ar-val');
+const arVal = document.getElementById('ar-input');
+const mdVal = document.getElementById('md-input');
+const wVal = document.getElementById('w-input');
+const csaVal = document.getElementById('csa-input');
 
 //misc
 const elem = document.getElementById("sc-standing");
@@ -36,10 +39,13 @@ var paused = false;
 function myMove() {   
     var pos = imgOffset; //default position  of image (subject)
     var id = null;
-    var di = displacement.textContent;
+    var di = parseInt(mdVal.value);
+    var meter = mdVal.value / 690;
+    console.log(di);
+    var frames = 0;
 
     clearInterval(id);
-    id = setInterval(frame, 2);
+    id = setInterval(frame, 10);
 
     function frame() {
         if (paused) {
@@ -58,9 +64,38 @@ function myMove() {
             paused = true;
             cancelled = false;
         } else if (cancelled) {
+            if(pos === maxY) {
+                elem.style.top = imgOffset + 'px';
+
+                //buttons
+                goBtn.disabled = false;
+                goBtn.classList.remove('is-hovered');
+                resetBtn.disabled = true;
+                resetBtn.classList.add('is-hovered');
+                pauseBtn.disabled = true;
+                pauseBtn.classList.add('is-hovered');
+                
+                //misc
+                cancelled = false;
+            } else {
+                //image modifiers
+                clearInterval(id);
+                elem.style.top = imgOffset + 'px';
+
+                //buttons
+                goBtn.disabled = false;
+                goBtn.classList.remove('is-hovered');
+                resetBtn.disabled = true;
+                resetBtn.classList.add('is-hovered');
+                pauseBtn.disabled = true;
+                pauseBtn.classList.add('is-hovered');
+                
+                //misc
+                cancelled = false;
+            }
+        } else if (pos == maxY) {
             //image modifiers
             clearInterval(id);
-            elem.style.top = imgOffset + 'px';
 
             //buttons
             goBtn.disabled = false;
@@ -69,26 +104,17 @@ function myMove() {
             resetBtn.classList.add('is-hovered');
             pauseBtn.disabled = true;
             pauseBtn.classList.add('is-hovered');
-            
-            //misc
-            cancelled = false;
-        } else if (pos == maxY) {
-            //image modifiers
-            clearInterval(id);
-
-            //buttons
-            goBtn.disabled = false;
-            goBtn.classList.remove('is-hovered');
 
             //console logs
             console.log(pos === maxY);
         } else {
             //image modifiers
             pos++; 
+            frames++;
             elem.style.top = pos + 'px'; 
 
             //value modifiers
-            displacement.textContent = parseInt(di) - (parseInt(di) / 690).toFixed(2);
+            displacement.textContent = (di - (meter * frames)).toFixed(2);
             velocity.textContent = 
 
 
@@ -101,7 +127,7 @@ function myMove() {
             pauseBtn.classList.remove('is-hovered');
 
             //console logs
-            console.log(pos - imgOffset);
+            //console.log(pos - imgOffset);
         }
     }
 }
@@ -112,6 +138,8 @@ function cancel() {
     } else {
         cancelled = true;
     }
+
+    console.log(cancelled);
 
     if (paused) {
         paused = false;
@@ -138,8 +166,11 @@ function isPaused() {
 
 //kinematic equations
 function vf(vi, a, t) {
+
     return vi + (a * t);
 }
 
-function d()
+function accel(vi, vf, t) {
+    return (vf - vi) / t;
+}
 
