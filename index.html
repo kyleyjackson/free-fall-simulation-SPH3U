@@ -17,7 +17,7 @@
     </div>
     <div class="columns is-centered">
         <div class="column is-2 is-vcentered" id="animation-container">
-            <button class="button mb-5 is-rounded is-info is-light" id="go-btn" onclick="myMove();">Drop!</button> 
+            <button class="button mb-5 is-rounded is-info is-light" id="go-btn" onclick="myMove();">Drop</button> 
             <span><button class="button is-rounded is-danger is-light" id="reset-btn" onclick="cancel();" disabled>Reset</button></span>
             <span><button class="button is-rounded is-primary is-light" id="pause-btn" onclick="isPaused();" disabled>Pause</button></span>
             <br>
@@ -58,9 +58,8 @@
                             <button class="button is-rounded is-info is-light" id="submit-vals" onclick="submitVals();">Submit</button>
                         </div>
                         <div class="column is-6">
-                            <p id="ar-check" class="is-size-6 mb-2">Air Resistance  <span><input type="checkbox" class="checkbox" id="a-check"></span></p>
-                            <p id="ar-val" class="is-size-6 mb-2">Air Resistance Value (N) <span><input type="number" class="input" id="ar-input" disabled></span></p>
-                            <p id="csa-val" class="is-size-6">Cross-Sectional Area Value (m<sup>2</sup>) <span><input type="number" class="input" id="csa-input" disabled></span></p>
+                            <p id="ar-check" class="is-size-6 mb-2">Air Resistance  <span><input type="checkbox" class="checkbox" id="a-check" onclick="arChecked();"></span></p>
+                            <p id="ar-val" class="is-size-6 mb-2">Air Resistance Value (N) <span><input type="number" class="input" id="ar-input" value="0" disabled></span></p>
                         </div>
                     </div>
                 </div>  

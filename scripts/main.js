@@ -16,11 +16,10 @@ pauseBtn.classList.add('is-hovered');
 
 //input fields
 const gCheck = document.getElementById('g-check');
-const arCheck = document.getElementById('ar-check');
+const arCheck = document.getElementById('a-check');
 const arVal = document.getElementById('ar-input');
 const mdVal = document.getElementById('md-input');
 const wVal = document.getElementById('w-input');
-const csaVal = document.getElementById('csa-input');
 
 //misc
 const elem = document.getElementById("sc-standing");
@@ -33,6 +32,8 @@ console.log(maxY);
 //* booleans
 var cancelled = false;
 var paused = false;
+var finished = false;
+var hasAr = false;
 
 
 function myMove() {   
@@ -46,11 +47,16 @@ function myMove() {
     var di = parseInt(mdVal.value);
     var m = parseInt(wVal);
 
+    console.log(di);
+    console.log(meter);
+
     clearInterval(id);
     id = setInterval(frame, 10);
 
     clearInterval(timer);
     timer = setInterval(runTimer, 1000);
+
+    finished = false;
 
     function frame() {
         if (paused) {
@@ -109,15 +115,14 @@ function myMove() {
             clearInterval(id);
 
             //buttons
-            goBtn.disabled = false;
-            goBtn.classList.remove('is-hovered');
-            resetBtn.disabled = true;
-            resetBtn.classList.add('is-hovered');
             pauseBtn.disabled = true;
             pauseBtn.classList.add('is-hovered');
 
             //console logs
             console.log(pos === maxY);
+
+            //booleans
+            finished = true;
         } else {
             //image modifiers
             pos++; 
@@ -125,8 +130,10 @@ function myMove() {
             elem.style.top = pos + 'px'; 
 
             //value modifiers
-            displacement.textContent = (di - (meter * frames)).toFixed(2);
-            velocity.textContent = 
+            displacement.textContent = parseInt((di - (meter * frames)).toFixed(2));
+            console.log(parseInt((di - (meter * frames)).toFixed(2)));
+            velocity.textContent = vf()
+            acceleration.textContent = accel();
 
 
             //buttons
@@ -147,8 +154,17 @@ function myMove() {
     }
 }
 
+//boolean functions
 function cancel() {
-    if (cancelled) {
+    if (finished && cancelled) {
+        elem.style.top = imgOffset + 'px'; 
+        cancelled = false;
+
+        goBtn.disabled = false;
+        goBtn.classList.remove('is-hovered');
+        resetBtn.disabled = true;
+        resetBtn.classList.add('is-hovered');
+    } else if (cancelled) {
         cancelled = false;
     } else {
         cancelled = true;
@@ -179,6 +195,17 @@ function isPaused() {
     }
 }
 
+function arChecked() {
+    if (!hasAr) {
+        hasAr = true;
+        arVal.disabled = false;
+    } else {
+        hasAr = false;
+        arVal.disabled = true;
+        arVal.value = 0;
+    }
+}
+
 //track mouse position for testing and improving functionality
 /*document.onmousemove = function(e) {
     var x = e.pageX;
@@ -188,14 +215,13 @@ function isPaused() {
     //!console.log(txt);
 } */
 
-//kinematic equations
-function vf(vi, a, t) {
-
-    return vi + (a * t);
+//equations
+function vf(a, t) {
+    return (a * t);
 }
 
-function accel(vi, vf, t) {
-    return (vf - vi) / t;
+function accel(ar, m) {
+    return ((m * 9.81) - ar) / m;
 }
 
 //submit function
