@@ -11,6 +11,9 @@ const goBtn = document.getElementById('go-btn');
 const resetBtn = document.getElementById('reset-btn');
 const pauseBtn = document.getElementById('pause-btn');
 
+resetBtn.classList.add('is-hovered');
+pauseBtn.classList.add('is-hovered');
+
 //input fields
 const gCheck = document.getElementById('g-check');
 const arCheck = document.getElementById('ar-check');
@@ -21,10 +24,6 @@ const csaVal = document.getElementById('csa-input');
 
 //misc
 const elem = document.getElementById("sc-standing");
-
-
-resetBtn.classList.add('is-hovered');
-pauseBtn.classList.add('is-hovered');
 
 //* numerical values
 const imgOffset = elem.offsetTop; //find y-pos of image in order to calculate displacement
@@ -39,13 +38,19 @@ var paused = false;
 function myMove() {   
     var pos = imgOffset; //default position  of image (subject)
     var id = null;
-    var di = parseInt(mdVal.value);
+    var timer = null;
     var meter = mdVal.value / 690;
-    console.log(di);
     var frames = 0;
+
+    //values
+    var di = parseInt(mdVal.value);
+    var m = parseInt(wVal);
 
     clearInterval(id);
     id = setInterval(frame, 10);
+
+    clearInterval(timer);
+    timer = setInterval(runTimer, 1000);
 
     function frame() {
         if (paused) {
@@ -74,6 +79,9 @@ function myMove() {
                 resetBtn.classList.add('is-hovered');
                 pauseBtn.disabled = true;
                 pauseBtn.classList.add('is-hovered');
+
+                //value modifiers
+                displacement.textContent = di;
                 
                 //misc
                 cancelled = false;
@@ -89,6 +97,9 @@ function myMove() {
                 resetBtn.classList.add('is-hovered');
                 pauseBtn.disabled = true;
                 pauseBtn.classList.add('is-hovered');
+
+                //value modifiers
+                displacement.textContent = di;
                 
                 //misc
                 cancelled = false;
@@ -130,6 +141,10 @@ function myMove() {
             //console.log(pos - imgOffset);
         }
     }
+
+    function runTimer() {
+        
+    }
 }
 
 function cancel() {
@@ -139,11 +154,20 @@ function cancel() {
         cancelled = true;
     }
 
-    console.log(cancelled);
-
     if (paused) {
         paused = false;
         elem.style.top = imgOffset + 'px';
+
+        //buttons
+        goBtn.disabled = false;
+        goBtn.classList.remove('is-hovered');
+        resetBtn.disabled = true;
+        resetBtn.classList.add('is-hovered');
+        pauseBtn.disabled = true;
+        pauseBtn.classList.add('is-hovered');
+
+        //value modifiers
+        displacement.textContent = di;
     }
 }
 
@@ -174,3 +198,8 @@ function accel(vi, vf, t) {
     return (vf - vi) / t;
 }
 
+//submit function
+function submitVals() {
+    //console.log('submitted!');
+
+}

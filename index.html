@@ -40,7 +40,7 @@
                         <div class="column is-6">
                             <p class="title is-size-5">Scalars</p>
                             <p class="is-size-6 mb-4" id="time">Time: <span id="t-st">0</span>s</p>
-                            <p class="is-size-6 mb-4" id="weight">Current Weight: <span id="w-st">0</span>kg</p>
+                            <p class="is-size-6 mb-4" id="weight">Weight: <span id="w-st">10</span>kg</p>
                         </div>
                     </div>   
                 </div>
@@ -53,13 +53,14 @@
                     <div class="columns">
                         <div class="column is-6">
                             <p id="g-check" class="is-size-6 mb-2">Gravity <span><input type="checkbox" class="checkbox" id="g-check" checked></span></p>
-                            <p id="w-val" class="is-size-6 mb-2">Weight (kg) <span><input type="number" class="input is-link" id="w-input" value="10"></span></p>
-                            <p id="md-val" class="is-size-6">Max Displacement (m) <span><input type="number" class="input is-link" id="md-input" value="100"></span></p>
+                            <p id="w-val" class="is-size-6 mb-2">Weight (kg) <span><input type="number" class="input" id="w-input" value="10"></span></p>
+                            <p id="md-val" class="is-size-6 mb-4">Max Displacement (m) <span><input type="number" class="input" id="md-input" value="100"></span></p>
+                            <button class="button is-rounded is-info is-light" id="submit-vals" onclick="submitVals();">Submit</button>
                         </div>
                         <div class="column is-6">
                             <p id="ar-check" class="is-size-6 mb-2">Air Resistance  <span><input type="checkbox" class="checkbox" id="a-check"></span></p>
-                            <p id="ar-val" class="is-size-6 mb-2">Air Resistance Value (N) <span><input type="number" class="input is-link" id="ar-input"></span></p>
-                            <p id="csa-val" class="is-size-6">Cross-Sectional Area Value (m<sup>2</sup>) <span><input type="number" class="input is-link" id="csa-input"></span></p>
+                            <p id="ar-val" class="is-size-6 mb-2">Air Resistance Value (N) <span><input type="number" class="input" id="ar-input" disabled></span></p>
+                            <p id="csa-val" class="is-size-6">Cross-Sectional Area Value (m<sup>2</sup>) <span><input type="number" class="input" id="csa-input" disabled></span></p>
                         </div>
                     </div>
                 </div>  
