@@ -4,7 +4,7 @@
 const displacement = document.getElementById('d-st');
 const time = document.getElementById('t-st');
 const velocity = document.getElementById('v-st');
-const acceleration = document.getElementById('d-st');
+const acceleration = document.getElementById('a-st');
 
 //buttons
 const goBtn = document.getElementById('go-btn');
@@ -46,9 +46,6 @@ function myMove() {
     //values
     var di = parseInt(mdVal.value);
     var m = parseInt(wVal);
-
-    console.log(di);
-    console.log(meter);
 
     clearInterval(id);
     id = setInterval(frame, 10);
@@ -130,8 +127,7 @@ function myMove() {
             elem.style.top = pos + 'px'; 
 
             //value modifiers
-            displacement.textContent = parseInt((di - (meter * frames)).toFixed(2));
-            console.log(parseInt((di - (meter * frames)).toFixed(2)));
+            displacement.textContent = (di - (meter * frames)).toFixed(2);
             velocity.textContent = vf()
             acceleration.textContent = accel();
 
@@ -202,7 +198,6 @@ function arChecked() {
     } else {
         hasAr = false;
         arVal.disabled = true;
-        arVal.value = 0;
     }
 }
 
