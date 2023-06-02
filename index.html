@@ -21,7 +21,7 @@
             <span><button class="button is-rounded is-danger is-light" id="reset-btn" onclick="cancel();" disabled>Reset</button></span>
             <span><button class="button is-rounded is-primary is-light" id="pause-btn" onclick="isPaused();" disabled>Pause</button></span>
             <br>
-            <img src="/images/standing2.png" id="sc-standing" class="ml-6">
+            <img src="/images/box.png" id="sc-standing" class="ml-6">
         </div>
         <div class="column is-4" id="options-stats-container">
             <div class="card">
@@ -35,12 +35,12 @@
                             <p class="title is-size-5">Downwards Vectors</p>
                             <p class="is-size-6 mb-4" id="displacement">Vertical Position: <span id="d-st">100</span>m</p>
                             <p class="is-size-6 mb-4" id="velocity">Velocity: <span id="v-st">0</span>m/s</p>
-                            <p class="is-size-6" id="acceleration">Acceleration: <span id="a-st">0</span>m/s<sup>2</sup><!-- <sup> tag used for superscripts --></p>
+                            <p class="is-size-6" id="acceleration">Acceleration: <span id="a-st">9.81</span>m/s<sup>2</sup><!-- <sup> tag used for superscripts --></p>
                         </div>
                         <div class="column is-6">
                             <p class="title is-size-5">Scalars</p>
-                            <p class="is-size-6 mb-4" id="time">Time: <span id="t-st">0</span>s</p>
-                            <p class="is-size-6 mb-4" id="weight">Weight: <span id="w-st">10</span>kg</p>
+                            <p class="is-size-6 mb-4" id="time">Time: <span id="t-st">00:00.00</span></p>
+                            <p class="is-size-6 mb-4" id="weight">Mass: <span id="w-st">10</span>kg</p>
                         </div>
                     </div>   
                 </div>
@@ -53,9 +53,9 @@
                     <div class="columns">
                         <div class="column is-6">
                             <p id="g-check" class="is-size-6 mb-2">Gravity <span><input type="checkbox" class="checkbox" id="g-check" checked></span></p>
-                            <p id="w-val" class="is-size-6 mb-2">Weight (kg) <span><input type="number" class="input" id="w-input" value="10"></span></p>
+                            <p id="w-val" class="is-size-6 mb-2">Mass (kg) <span><input type="number" class="input" id="w-input" value="10"></span></p>
                             <p id="md-val" class="is-size-6 mb-4">Max Displacement (m) <span><input type="number" class="input" id="md-input" value="100"></span></p>
-                            <button class="button is-rounded is-info is-light" id="submit-vals" onclick="submitVals();">Submit</button>
+                            <button class="button is-rounded is-warning is-light" id="submit-vals" onclick="submitVals();">Submit</button>
                         </div>
                         <div class="column is-6">
                             <p id="ar-check" class="is-size-6 mb-2">Air Resistance  <span><input type="checkbox" class="checkbox" id="a-check" onclick="arChecked();"></span></p>
@@ -77,5 +77,3 @@
 </body>
 </html>
 <script src="/scripts/main.js"></script>
-                
-  
