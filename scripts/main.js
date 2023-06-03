@@ -252,8 +252,10 @@ function cancel() {
 function isPaused() {
     if (paused) {
         paused = false;
+        console.log(paused);
     } else {
         paused = true;
+        console.log(paused);
     }
 }
 
@@ -284,7 +286,10 @@ function accel(ar, m) {
 }
 
 function speed(vf) {
-    return 1 / vf;
+    if (!isFinite(10 / vf) || (10 / vf) > 100)
+        return 100;
+    else
+        return 10 / vf;
 }
 
 //submit function
