@@ -11,10 +11,8 @@ const mass = document.getElementById('w-st');
 //buttons
 const goBtn = document.getElementById('go-btn');
 const resetBtn = document.getElementById('reset-btn');
-const pauseBtn = document.getElementById('pause-btn');
 
 resetBtn.classList.add('is-hovered');
-pauseBtn.classList.add('is-hovered');
 
 //input fields
 const gCheck = document.getElementById('g-check');
@@ -42,9 +40,12 @@ var ar = parseInt(arVal.value);
 
 //* booleans
 var cancelled = false;
-var paused = false;
 var finished = false;
 var hasAr = false;
+
+//* chart js
+const vtGraph = document.getElementById('vt-graph');
+const labels = ['1', '2', '3', '4', '5', '6', '7'];
 
 
 function myMove() {   
@@ -73,27 +74,6 @@ function myMove() {
     frame();
 
     function frame() {
-        if (paused) {
-            elem.style.top = pos2 + 'px';
-
-            //booleans
-            cancelled = false;
-
-            //intervals
-            //!clearInterval(id);
-            clearInterval(timer);
-            clearTimeout(id);
-            id = null;
-
-            //buttons
-            goBtn.disabled = true;
-            goBtn.classList.add('is-hovered');
-            resetBtn.disabled = false;
-            resetBtn.classList.remove('is-hovered');
-            pauseBtn.disabled = true;
-            pauseBtn.classList.add('is-hovered');
-        }
-        
         if (cancelled) {
             if(pos === maxY) {
                 //things
@@ -104,8 +84,6 @@ function myMove() {
                 goBtn.classList.remove('is-hovered');
                 resetBtn.disabled = true;
                 resetBtn.classList.add('is-hovered');
-                pauseBtn.disabled = true;
-                pauseBtn.classList.add('is-hovered');
 
                 //value modifiers
                 
@@ -125,8 +103,6 @@ function myMove() {
                 goBtn.classList.remove('is-hovered');
                 resetBtn.disabled = true;
                 resetBtn.classList.add('is-hovered');
-                pauseBtn.disabled = true;
-                pauseBtn.classList.add('is-hovered');
 
                 //value modifiers
                 displacement.textContent = di;
@@ -140,10 +116,6 @@ function myMove() {
             //intervals
             //!clearInterval(id);
             clearInterval(timer);
-
-            //buttons
-            pauseBtn.disabled = true;
-            pauseBtn.classList.add('is-hovered');
 
             //console logs
             console.log(pos === maxY);
@@ -167,13 +139,10 @@ function myMove() {
             goBtn.classList.add('is-hovered');
             resetBtn.disabled = false;
             resetBtn.classList.remove('is-hovered');
-            pauseBtn.disabled = false;
-            pauseBtn.classList.remove('is-hovered');
 
             //console logs
             //console.log(pos - imgOffset);
-            id = setTimeout(frame, speed(vf(accel(ar, m), (totalMsec / 1000))));
-            console.log(speed(vf(accel(ar, m), (totalMsec / 1000))));
+            id = setTimeout(frame, speed((vf(accel(ar, m), (totalMsec / 1000))) / (di / 100)));
         }
     }
 
@@ -227,35 +196,6 @@ function cancel() {
         displacement.textContent = di;
         velocity.textContent = 0;
         displayTime(0, 0, 0);
-    }
-
-    if (paused) {
-        paused = false;
-        elem.style.top = imgOffset + 'px';
-        displayTime(0, 0, 0);
-
-        //buttons
-        goBtn.disabled = false;
-        goBtn.classList.remove('is-hovered');
-        resetBtn.disabled = true;
-        resetBtn.classList.add('is-hovered');
-        pauseBtn.disabled = true;
-        pauseBtn.classList.add('is-hovered');
-
-        //value modifiers
-        displacement.textContent = di;
-        velocity.textContent = 0;
-    }
-
-}
-
-function isPaused() {
-    if (paused) {
-        paused = false;
-        console.log(paused);
-    } else {
-        paused = true;
-        console.log(paused);
     }
 }
 
@@ -316,3 +256,28 @@ document.onmousemove = function(e) {
 
     //!console.log(txt);
 } 
+
+//* chart.js code here
+function makeVt() {
+    new Chart(vtGraph, {
+        type: 'line',
+        data: {
+            labels: labels,
+    
+            datasets: [{
+                label: 'My First Dataset',
+                data: data,
+                fill: false,
+                borderColor: 'rgb(75, 192, 192)',
+                tension: 0.1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+}

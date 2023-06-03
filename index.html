@@ -19,7 +19,6 @@
         <div class="column is-2 is-vcentered" id="animation-container">
             <button class="button mb-5 is-rounded is-info is-light" id="go-btn" onclick="myMove();">Drop</button> 
             <span><button class="button is-rounded is-danger is-light" id="reset-btn" onclick="cancel();" disabled>Reset</button></span>
-            <span><button class="button is-rounded is-primary is-light" id="pause-btn" onclick="isPaused();" disabled>Pause</button></span>
             <br>
             <img src="/images/box.png" id="sc-standing" class="ml-6">
         </div>
@@ -69,11 +68,12 @@
                     <p class="card-header-title has-text-centered is-size-4">Graphs</p>
                 </div>
                 <div class="card-content">
-                    
+                    <canvas id="vt-graph"></canvas>
                 </div>
             </div>
         </div>
     </div>
 </body>
 </html>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="/scripts/main.js"></script>
