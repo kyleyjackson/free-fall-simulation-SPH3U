@@ -31,6 +31,7 @@ var msec = 0;
 var sec = 0;
 var min = 0; 
 var totalMsec = 0;
+var tmsc = 0;
 
 //* parsed 
 var di = parseInt(mdVal.value);
@@ -42,16 +43,19 @@ var ar = parseInt(arVal.value);
 var cancelled = false;
 var finished = false;
 var hasAr = false;
+var madeGraph = false;
 
 //* chart js
 const vtGraph = document.getElementById('vt-graph');
-const labels = ['1', '2', '3', '4', '5', '6', '7'];
+var labels = null;
+var tvelo = [];
+var myChart = null;
 
 
 function myMove() {   
     //!setInterval methods for the falling image had been depreciated in order to properly calculate velocity
     var pos = imgOffset; //default position  of image (subject)
-    var id = null;
+    //!var id = null;
     var timer = null;
     var meter = mdVal.value / 690;
     var frames = 0;
@@ -122,6 +126,9 @@ function myMove() {
 
             //booleans
             finished = true;
+
+            //chart js
+            makeVt();
         } else {
             //image modifiers
             pos++; 
@@ -245,7 +252,6 @@ function submitVals() {
     mass.textContent = m;
     displacement.textContent = di;
     //console.log('submitted!');
-
 }
 
 //track mouse position for testing and improving functionality
@@ -259,25 +265,112 @@ document.onmousemove = function(e) {
 
 //* chart.js code here
 function makeVt() {
-    new Chart(vtGraph, {
-        type: 'line',
-        data: {
-            labels: labels,
+    tmsc = Number(Math.round((totalMsec / 1000) +'e+2') +'e-2');
+    labels = [tmsc, tmsc * 2, tmsc * 3, tmsc * 4, tmsc * 5, tmsc * 6, tmsc * 7, tmsc * 8, tmsc * 9, tmsc * 10];
+    console.log(labels);
+
+    for (var i = 0; i < labels.length; i++) {
+        tvelo.push(vf(accel(ar, m), labels[i] / 10).toFixed(2));
+    }
+
+    console.log(tvelo);
+
+    if(madeGraph) {
+        myChart.destroy();
+
+        myChart = new Chart(vtGraph, {
+            type: 'line',
     
-            datasets: [{
-                label: 'My First Dataset',
-                data: data,
-                fill: false,
-                borderColor: 'rgb(75, 192, 192)',
-                tension: 0.1
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
+            data: {
+                labels: labels,
+        
+                datasets: [{
+                    label: 'Velocity-Time Graph',
+                    data: tvelo,
+                    fill: false,
+                    borderColor: 'rgb(75, 192, 192)',
+                    tension: 0.1
+                }]
+            },
+    
+            options: {
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'time'
+                        }
+                    },
+    
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'velocity'
+                        },
+    
+                        beginAtZero: true
+                    }
                 }
             }
-        }
+        });
+    } else {
+        myChart = new Chart(vtGraph, {
+            type: 'line',
+    
+            data: {
+                labels: labels,
+        
+                datasets: [{
+                    label: 'Velocity-Time Graph',
+                    data: tvelo,
+                    fill: false,
+                    borderColor: 'rgb(75, 192, 192)',
+                    tension: 0.1
+                }]
+            },
+    
+            options: {
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'time'
+                        }
+                    },
+    
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'velocity'
+                        },
+    
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+            
+        madeGraph = true;
+    }
+}
+
+//add and remove
+function addData(chart, label, data) {
+    chart.data.labels.push(label);
+
+    chart.data.datasets.forEach((dataset) => {
+        dataset.data.push(data);
     });
+
+    chart.update();
+}
+
+function removeData(chart) {
+    chart.data.labels.pop();
+
+    chart.data.datasets.forEach((dataset) => {
+        dataset.data.pop();
+    });
+
+    chart.update();
 }

@@ -1,12 +1,8 @@
 {
-  "dependencies": {
-    "chart.js": "^4.3.0"
-  },
   "name": "makeshift-phet-sim",
   "description": "This project is the Independent Study Project (ISP) for SPH3U",
   "version": "1.0.0",
   "main": "index.js",
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "mc-scripts build"
