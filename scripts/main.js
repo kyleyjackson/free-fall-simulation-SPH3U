@@ -48,31 +48,42 @@ var hasAr = false;
 
 
 function myMove() {   
+    //!setInterval methods for the falling image had been depreciated in order to properly calculate velocity
     var pos = imgOffset; //default position  of image (subject)
     var id = null;
     var timer = null;
     var meter = mdVal.value / 690;
     var frames = 0;
+    var pos2 = 0;
 
+    msec = 0;
+    sec = 0;
+    min = 0;
     totalMsec = 0;
 
-    clearInterval(id);
-    clearInterval(timer);
+    //!clearInterval(id);
+    //!clearInterval(timer);
 
-    id = setInterval(frame, 1);
+    //!id = setInterval(frame, 10);  
     timer = setInterval(runTimer, 10);
+    displayTime(0, 0, 0);
 
     finished = false;
 
+    frame();
+
     function frame() {
         if (paused) {
+            elem.style.top = pos2 + 'px';
+
             //booleans
-            paused = true;
             cancelled = false;
 
             //intervals
-            clearInterval(id);
+            //!clearInterval(id);
             clearInterval(timer);
+            clearTimeout(id);
+            id = null;
 
             //buttons
             goBtn.disabled = true;
@@ -103,7 +114,7 @@ function myMove() {
                 cancelled = false;
             } else {
                 //intervals
-                clearInterval(id);
+                //!clearInterval(id);
                 clearInterval(timer);
 
                 //thing
@@ -127,7 +138,7 @@ function myMove() {
             }
         } else if (pos == maxY) {
             //intervals
-            clearInterval(id);
+            //!clearInterval(id);
             clearInterval(timer);
 
             //buttons
@@ -142,6 +153,7 @@ function myMove() {
         } else {
             //image modifiers
             pos++; 
+            pos2++;
             frames++;
             elem.style.top = pos + 'px'; 
 
@@ -160,21 +172,20 @@ function myMove() {
 
             //console logs
             //console.log(pos - imgOffset);
+            id = setTimeout(frame, speed(vf(accel(ar, m), (totalMsec / 1000))));
+            console.log(speed(vf(accel(ar, m), (totalMsec / 1000))));
         }
     }
 
     function runTimer() {
         msec++;
-        console.log(msec);
         totalMsec++;
         if (msec === 100) {
             msec = 0;
             sec++;
-            console.log(sec);
 
             if(sec === 60) {
                 min++;
-                console.log(min);
                 sec = 0;
             }
         } 
@@ -272,8 +283,8 @@ function accel(ar, m) {
     }
 }
 
-function intervalVf(vf) {
-
+function speed(vf) {
+    return 1 / vf;
 }
 
 //submit function
