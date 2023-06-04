@@ -229,11 +229,14 @@ function accel(ar, m) {
         return ((m * 9.81) - ar) / m; //net accel => net force / mass => (mg - force of air resistance) / mass
     } else {
         return 9.81;
-    }
+    }   
 }
 
 function speed(vf) {
-    return 1 / vf;
+    if (!isFinite(10 / vf) || (10 / vf) > 100)
+        return 100;
+    else
+        return 10 / vf;
 }
 
 //submit function
@@ -262,7 +265,7 @@ document.onmousemove = function(e) {
 
 //* chart.js code here
 function makeVt() {
-    tmsc = Number(Math.round((totalMsec / 1000) +'e+2') +'e-2');
+    tmsc = totalMsec;
     labels = [tmsc, tmsc * 2, tmsc * 3, tmsc * 4, tmsc * 5, tmsc * 6, tmsc * 7, tmsc * 8, tmsc * 9, tmsc * 10];
     console.log(labels);
 
@@ -331,7 +334,7 @@ function makeVt() {
                     x: {
                         title: {
                             display: true,
-                            text: 'time'
+                            text: 'time (ms)'
                         }
                     },
     
