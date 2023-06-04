@@ -233,10 +233,7 @@ function accel(ar, m) {
 }
 
 function speed(vf) {
-    if (!isFinite(10 / vf) || (10 / vf) > 100)
-        return 100;
-    else
-        return 10 / vf;
+    return 1 / vf;
 }
 
 //submit function
