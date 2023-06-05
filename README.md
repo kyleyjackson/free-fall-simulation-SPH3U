@@ -9,4 +9,4 @@ This simulation has many key features programmed into it, these include:
 - Inputs for mass, maximum displacement, and force of air resistance
 - Realtime statistics for scalars and vectors as the object falls
 - The option to entirely ignore air resistance
-- Velocity-time and Displacement-time graphs visuallized with Chart.JS
+- Velocity-time and Displacement-time graph visuallized with Chart.JS

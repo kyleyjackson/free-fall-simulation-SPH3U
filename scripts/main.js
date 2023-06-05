@@ -44,12 +44,15 @@ var cancelled = false;
 var finished = false;
 var hasAr = false;
 var madeGraph = false;
+var madeGraph1 = false;
 
 //* chart js
 const vtGraph = document.getElementById('vt-graph');
+const dyGraph = document.getElementById('dy-graph');
 var labels = null;
 var tvelo = [];
 var myChart = null;
+var dy = [];
 
 
 function myMove() {   
@@ -59,7 +62,6 @@ function myMove() {
     var timer = null;
     var meter = mdVal.value / 690;
     var frames = 0;
-    var pos2 = 0;
 
     msec = 0;
     sec = 0;
@@ -134,6 +136,7 @@ function myMove() {
             pos++; 
             pos2++;
             frames++;
+            console.log(meter);
             elem.style.top = pos + 'px'; 
 
             //value modifiers
@@ -321,10 +324,10 @@ function makeVt() {
                 labels: labels,
         
                 datasets: [{
-                    label: 'Velocity-Time Graph',
+                    label: 'Displacement-Time Graph',
                     data: tvelo,
                     fill: false,
-                    borderColor: 'rgb(75, 192, 192)',
+                    borderColor: 'rgb(192, 1, 1)',
                     tension: 0.1
                 }]
             },
@@ -354,23 +357,90 @@ function makeVt() {
     }
 }
 
-//add and remove
-function addData(chart, label, data) {
-    chart.data.labels.push(label);
+function makeD() {
+    tmsc = totalMsec;
+    labels = [tmsc, tmsc * 2, tmsc * 3, tmsc * 4, tmsc * 5, tmsc * 6, tmsc * 7, tmsc * 8, tmsc * 9, tmsc * 10];
+    console.log(labels);
 
-    chart.data.datasets.forEach((dataset) => {
-        dataset.data.push(data);
-    });
+    for (var i = 0; i < labels.length; i++) {
+        dy.push(di );
+    }
 
-    chart.update();
-}
+    if(madeGraph1) {
+        myChart.destroy();
 
-function removeData(chart) {
-    chart.data.labels.pop();
-
-    chart.data.datasets.forEach((dataset) => {
-        dataset.data.pop();
-    });
-
-    chart.update();
+        myChart = new Chart(vtGraph, {
+            type: 'line',
+    
+            data: {
+                labels: labels,
+        
+                datasets: [{
+                    label: 'Velocity-Time Graph',
+                    data: dy,
+                    fill: false,
+                    borderColor: 'rgb(75, 192, 192)',
+                    tension: 0.1
+                }]
+            },
+    
+            options: {
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'time'
+                        }
+                    },
+    
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'velocity'
+                        },
+    
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    } else {
+        myChart = new Chart(vtGraph, {
+            type: 'line',
+    
+            data: {
+                labels: labels,
+        
+                datasets: [{
+                    label: 'Velocity-Time Graph',
+                    data: tvelo,
+                    fill: false,
+                    borderColor: 'rgb(75, 192, 192)',
+                    tension: 0.1
+                }]
+            },
+    
+            options: {
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'time (ms)'
+                        }
+                    },
+    
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'velocity'
+                        },
+    
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+            
+        madeGraph1 = true;
+    }
 }
