@@ -265,13 +265,13 @@ function submitVals() {
 }
 
 //track mouse position for testing and improving functionality
-document.onmousemove = function(e) {
+/* document.onmousemove = function(e) {
     var x = e.pageX;
     var y = e.pageY;
     var txt = e.target.title = "X is " + x + " and Y is " + y;
 
     //!console.log(txt);
-} 
+} */
 
 //remove notif
 function removeNotif() {
