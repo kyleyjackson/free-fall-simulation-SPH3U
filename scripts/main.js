@@ -248,7 +248,7 @@ function submitVals() {
     ar = parseInt(arVal.value);
     di = parseInt(mdVal.value);
 
-    if (((m * 9.81) - ar) === 0 || ((m * 9.81) - ar) < 0) {
+    if (((m * 9.81) - ar) <= 0) {
         notif.classList.remove('my-is-invisible-yay');
         ar = prevAr;
     }
