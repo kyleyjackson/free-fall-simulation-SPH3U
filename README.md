@@ -1,4 +1,4 @@
-# Free Fall Simulation - ICS4U
+# Free Fall Simulation - SPH3U
 
 This project is intended to replicate an object in free fall using inputs for mass, maximum displacement, and air resistance value.
 
