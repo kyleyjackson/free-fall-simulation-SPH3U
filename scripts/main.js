@@ -22,7 +22,8 @@ const mdVal = document.getElementById('md-input');
 const wVal = document.getElementById('w-input');
 
 //misc
-const elem = document.getElementById("sc-standing");
+const elem = document.getElementById('sc-standing');
+const notif = document.getElementById('notif');
 
 //* numerical values
 const imgOffset = elem.offsetTop; //find y-pos of image in order to calculate displacement
@@ -37,6 +38,7 @@ var tmsc = 0;
 var di = parseInt(mdVal.value);
 var m = parseInt(wVal.value);
 var ar = parseInt(arVal.value);
+var prevAr = 0;
 
 
 //* booleans
@@ -229,7 +231,7 @@ function accel(ar, m) {
         return ((m * 9.81) - ar) / m; //net accel => net force / mass => (mg - force of air resistance) / mass
     } else {
         return 9.81;
-    }   
+    } 
 }
 
 function speed(vf) {
@@ -241,9 +243,15 @@ function speed(vf) {
 
 //submit function
 function submitVals() {
+    prevAr = ar;
     m = parseInt(wVal.value);
     ar = parseInt(arVal.value);
     di = parseInt(mdVal.value);
+
+    if (((m * 9.81) - ar) === 0 || ((m * 9.81) - ar) < 0) {
+        notif.classList.remove('my-is-invisible-yay');
+        ar = prevAr;
+    }
 
     /*console.log(ar);
     console.log(((m * 9.81) - ar) / m);
@@ -265,8 +273,14 @@ document.onmousemove = function(e) {
     //!console.log(txt);
 } 
 
+//remove notif
+function removeNotif() {
+    notif.classList.add('my-is-invisible-yay');
+}
+
 //* chart.js code here
 function makeVt() {
+    tvelo = [];
     tmsc = totalMsec;
     labels = [0, tmsc, tmsc * 2, tmsc * 3, tmsc * 4, tmsc * 5, tmsc * 6, tmsc * 7, tmsc * 8, tmsc * 9, tmsc * 10];
     console.log(labels);

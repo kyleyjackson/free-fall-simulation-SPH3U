@@ -60,6 +60,11 @@
                         <div class="column is-6">
                             <p id="ar-check" class="is-size-6 mb-2">Air Resistance  <span><input type="checkbox" class="checkbox" id="a-check" onclick="arChecked();"></span></p>
                             <p id="ar-val" class="is-size-6 mb-2">Air Resistance Value (N) <span><input type="number" class="input" id="ar-input" value="0" disabled></span></p>
+                            <div class="notification is-danger is-light my-is-invisible-yay" id="notif">
+                                <button class="delete" onclick="removeNotif();"></button>
+                                The value you have entered for air resistance has made acceleration negative.
+                                <strong>Please enter a new value</strong>
+                            </div>
                         </div>
                     </div>
                 </div>  
