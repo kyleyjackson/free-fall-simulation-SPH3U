@@ -15,7 +15,6 @@ const resetBtn = document.getElementById('reset-btn');
 resetBtn.classList.add('is-hovered');
 
 //input fields
-const gCheck = document.getElementById('g-check');
 const arCheck = document.getElementById('a-check');
 const arVal = document.getElementById('ar-input');
 const mdVal = document.getElementById('md-input');
