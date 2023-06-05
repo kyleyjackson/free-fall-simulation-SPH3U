@@ -1,6 +1,12 @@
-# makeshift-pHET-sim
+# Free Fall Simulation - ICS4U
 
-This project is the Independent Study Project (ISP) for SPH3U
+This project is intended to replicate an object in free fall using inputs for mass, maximum displacement, and air resistance value.
 
-![Logo](https://i.imgur.com/wXRZ2Xq.png)
 
+## Features
+This simulation has many key features programmed into it, these include:
+
+- Inputs for mass, maximum displacement, and force of air resistance
+- Realtime statistics for scalars and vectors as the object falls
+- The option to entirely ignore air resistance
+- Velocity-time and Displacement-time graphs visuallized with Chart.JS
